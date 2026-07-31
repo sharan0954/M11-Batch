@@ -1,0 +1,14 @@
+{
+    "subject":"Sales Order Creation",
+    "customerNo":"147852369",
+    "dueDate":"2029-01-01",
+    "po":"Purchase Order",
+    "address":"Street 4, Dighi Road Bhosari, 411039",
+    "city":"Pune",
+    "state":"MH",
+    "code":"411039",
+    "country":"India",
+    "description":"This is description"
+
+
+}

@@ -7,6 +7,7 @@ import { orgClass } from '../pages/orgClass'
 import { opportunityClass } from '../pages/opportunityClass'
 import { productClass } from '../pages/productClass'
 import { invoiceClass } from '../pages/invoiceClass'
+import { SalesOrderPage } from '../pages/SalesOrderPage'
 
 export let test = base.extend({
     leads :async ({login},use) => {
@@ -34,6 +35,11 @@ export let test = base.extend({
      invoice: async ({login},use) => {
         let invoice=new invoiceClass(login)
         await use(invoice)
+        
+    },
+     so: async ({login},use) => {
+        let so=new SalesOrderPage(login)
+        await use(so)
         
     }
 

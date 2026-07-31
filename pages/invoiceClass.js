@@ -5,8 +5,8 @@ export class invoiceClass {
         this.page = page;
 
         // Navigation
-        this.moreMenu = page.locator('text=More');
-        this.invoiceModule = page.locator('text=Invoice');
+        this.moreMenu = page.locator('text=More').first();
+        this.invoiceModule = page.locator('text=Invoice').first();
         this.createInvoiceBtn = page.locator('img[title="Create Invoice..."]');
 
         // Invoice Information
@@ -45,7 +45,7 @@ export class invoiceClass {
         this.addProductBtn = page.locator('input[value="Add Product"]');
 
         // Save
-        this.saveBtn = page.locator('//input[@title="Save [Alt+S]"]');
+        this.saveBtn = page.locator('//input[@title="Save [Alt+S]"]').first();
     }
 
     async openInvoiceModule() {
