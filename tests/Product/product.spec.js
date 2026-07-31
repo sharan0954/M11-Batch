@@ -50,7 +50,7 @@ test('Product Module', async ({page}) => {
     
 })
 
-test.only('DDT', async ({page}) => {
+test('DDT', async ({page}) => {
     //!Login to the Application
     await page.goto(login.url)
     await page.locator('//input[@name="user_name"]').fill(login.username)

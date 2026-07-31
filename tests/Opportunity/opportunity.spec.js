@@ -50,7 +50,7 @@ test('Opportunity Module', async ({page}) => {
     
 })
 
-test.only('DTT',async ({page}) => {
+test('DTT',async ({page}) => {
 
     //!Login to the Application
     await page.goto(login.url)

@@ -32,7 +32,7 @@ test('Org Module',async ({page}) => {
     
 })
 
-test.only('DDT',async ({page}) => {
+test('DDT',async ({page}) => {
     await page.goto(login.url)
     await page.locator('//input[@name="user_name"]').fill(login.username)
     await page.locator('//input[@name="user_password"]').fill(login.password)

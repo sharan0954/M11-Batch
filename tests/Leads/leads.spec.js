@@ -94,11 +94,11 @@ await l.details(login.username,login.password)
   
 })
 
-test('Leads Page'),async ({page}) => {
+test('Leads Page',async ({page}) => {
   let lead=new leadsClass(page)
   await lead.openLeads()
   await lead.clickCreateLead()
   await lead.enterLeadDetails()
   
   
-}
+});
