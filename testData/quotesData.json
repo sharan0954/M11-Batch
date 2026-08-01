@@ -1,0 +1,20 @@
+{
+    "subject": "Laptop Quote",
+    "validTill": "2026-08-31",
+    "quoteStage": "Created",
+    "carrier": "FedEx",
+    "organization": "Qspiders",
+    "contact": "John Smith",
+    "billingStreet": "MG Road",
+    "billingCity": "Bangalore",
+    "billingState": "Karnataka",
+    "billingCode": "560001",
+    "billingCountry": "India",
+    "shippingStreet": "Brigade Road",
+    "shippingCity": "Bangalore",
+    "shippingState": "Karnataka",
+    "shippingCode": "560025",
+    "shippingCountry": "India",
+    "terms": "Payment due within 30 days.",
+    "description": "Quote created using Playwright Automation."
+}

@@ -1,23 +1,24 @@
-import { expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
 
-export class SalesOrderPage {
+export class QuotesPage {
     constructor(page) {
         this.page = page;
 
+
         this.moreMenu = page.locator('text=More').first();
-        this.soModule = page.locator('text=Sales Order').first();
-        this.createSOBtn = page.locator('img[title="Create Sales Order..."]');
+        this.quotesModule = page.locator('text=Quotes').first();
+        this.createQuotesBtn = page.locator('img[title="Create Quote..."]');
 
-        // Customer Information
+        // Quote Information
         this.subject = page.locator('[name="subject"]');
-        this.customerNo = page.locator('[name="customerno"]');
-        this.quoteName = page.locator('[name="quote_id"]');
-        this.contactName = page.locator('[name="contact_id"]');
-        this.accountName = page.locator('[name="account_id"]');
+        this.validTill = page.locator('[name="validtill"]');
+        this.quoteStage = page.locator('[name="quotestage"]');
+        this.carrier = page.locator('[name="carrier"]');
+        this.inventoryManager = page.locator('[name="inventorymanager"]');
 
-        // Dates
-        this.dueDate = page.locator('[name="duedate"]');
-        this.purchaseOrder = page.locator('#vtiger_purchaseorder');
+        // Lookup fields
+        this.organizationLookup = page.locator('img[title="Select"] >> nth=0');
+        this.contactLookup = page.locator('img[title="Select"] >> nth=1');
 
         // Billing Address
         this.billingStreet = page.locator('[name="bill_street"]');
@@ -33,39 +34,48 @@ export class SalesOrderPage {
         this.shippingCode = page.locator('[name="ship_code"]');
         this.shippingCountry = page.locator('[name="ship_country"]');
 
+        // Terms & Conditions
+        this.termsAndConditions = page.locator('[name="terms_conditions"]');
+
         // Description
         this.description = page.locator('[name="description"]');
 
-        // Buttons
-        this.addProduct = page.locator('input[value="Add Product"]');
-        this.addService = page.locator('input[value="Add Service"]');
+        // Product section
+        this.addProductButton = page.locator('input[value="Add Product"]');
+        this.addServiceButton = page.locator('input[value="Add Service"]');
+
+        // Save / Cancel
         this.saveButton = page.locator('input[title="Save [Alt+S]"]').first();
-        this.cancelButton = page.locator('input[title="Cancel"]');
+        this.cancelButton = page.locator('input[title="Cancel"]').first();
     }
 
-     async openSalesOrderModule() {
-        await this.moreMenu.hover();
-        await this.soModule.click();
+    async clickOnMoreMenu(){
+        await this.moreMenu.click()
+
     }
 
-    async clickCreateSalesOrder() { 
-        await this.createSOBtn.click();
+    async clickOnQuotes(){
+        await this.quotesModule.click()
+    }
+
+    async clickOnCreateQuotes(){
+        await this.createQuotesBtn.click()
     }
 
     async enterSubject(subject) {
         await this.subject.fill(subject);
     }
 
-    async enterCustomerNo(customerNo) {
-        await this.customerNo.fill(customerNo);
+    async enterValidTill(date) {
+        await this.validTill.fill(date);
     }
 
-    async enterDueDate(date) {
-        await this.dueDate.fill(date);
+    async selectQuoteStage(stage) {
+        await this.quoteStage.selectOption({ label: stage });
     }
 
-    async enterPurchaseOrder(po) {
-        await this.purchaseOrder.fill(po);
+    async selectCarrier(carrier) {
+        await this.carrier.selectOption({ label: carrier });
     }
 
     async enterBillingAddress(street, city, state, code, country) {
@@ -84,19 +94,24 @@ export class SalesOrderPage {
         await this.shippingCountry.fill(country);
     }
 
-    async enterDescription(description) {
-        await this.description.fill(description);
+    async enterTerms(text) {
+        await this.termsAndConditions.fill(text);
+    }
+
+    async enterDescription(text) {
+        await this.description.fill(text);
     }
 
     async clickAddProduct() {
-        await this.addProduct.click();
+        await this.addProductButton.click();
     }
 
     async clickAddService() {
-        await this.addService.click();
+        await this.addServiceButton.click();
     }
 
     async clickSave() {
+        await this.saveButton.waitFor({ state: 'visible' });
         await this.saveButton.click();
     }
 
@@ -104,12 +119,13 @@ export class SalesOrderPage {
         await this.cancelButton.click();
     }
 
-    async createSalesOrder(data) {
+    async createQuote(data) {
         await this.enterSubject(data.subject);
-        await this.enterCustomerNo(data.customerNo);
-        await this.enterDueDate(data.dueDate);
-        await this.enterPurchaseOrder(data.purchaseOrder);
+        await this.enterValidTill(data.validTill);
+        await this.selectQuoteStage(data.quoteStage);
         await this.enterDescription(data.description);
         await this.clickSave();
     }
 }
+
+module.exports = QuotesPage;
